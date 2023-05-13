@@ -122,44 +122,45 @@ function checkAnswer(choiceIndex) {
 
 // Quiz beenden
 function endQuiz() {
-    var user = auth.currentUser;
+  var user = auth.currentUser;
+  var username = user.displayName; // Annahme: Der Benutzername ist im Benutzerobjekt als displayName gespeichert
 
-    quizContainer.style.display = "none";
-    scoreboardContainer.style.display = "block";
+  quizContainer.style.display = "none";
+  scoreboardContainer.style.display = "block";
 
-    // Punktzahl in der Datenbank speichern
-    db.collection("scores")
-.add({
-    user: user.uid,
-    score: score
-})
-.then(function() {
-    showScoreboard();
-})
-.catch(function(error) {
-    console.log(error);
-});
+  // Punktzahl und Benutzername in der Datenbank speichern
+  db.collection("scores")
+    .add({
+      user: username,
+      score: score
+    })
+    .then(function() {
+      showScoreboard();
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
 
 // Scoreboard anzeigen
 function showScoreboard() {
-    scoreboardElement.innerHTML = "";
+  scoreboardElement.innerHTML = "";
 
-    db.collection("scores")
-.orderBy("score", "desc")
-.limit(10)
-.get()
-.then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
+  db.collection("scores")
+    .orderBy("score", "desc")
+    .limit(10)
+    .get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
         var scoreData = doc.data();
         var li = document.createElement("li");
-        li.textContent = "Punktzahl: " + scoreData.score;
+        li.textContent = "Benutzer: " + scoreData.user + " | Punktzahl: " + scoreData.score;
         scoreboardElement.appendChild(li);
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
     });
-})
-.catch(function(error) {
-    console.log(error);
-});
 }
 
 // Benutzerstatus überprüfen
