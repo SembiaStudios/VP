@@ -1,7 +1,7 @@
 #login-container, #quiz-container, #scoreboard-container {
   width: 1000px;
-  margin: 20px auto;
-  padding: 10px;
+  margin: 40px auto;
+  padding: 20px;
   border: 1px solid #ccc;
   text-align: center;
 }
