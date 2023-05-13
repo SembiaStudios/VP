@@ -7,13 +7,15 @@
 <body>
   <h1> LanguageLab - Quiz </h1>
 
-  <div id="login-container">
-    <h2>Anmelden</h2>
-    <input type="email" id="email" placeholder="E-Mail">
-    <input type="password" id="password" placeholder="Passwort">
-    <button onclick="login()">Anmelden</button>
-    <p id="error-message" class="error-message"></p>
-  </div>
+<div id="login-container">
+  <h2>Anmelden</h2>
+  <div id="error-message"></div>
+  <input type="email" id="email" placeholder="E-Mail">
+  <input type="password" id="password" placeholder="Passwort">
+  <button onclick="login()">Anmelden</button>
+  <button onclick="register()">Registrieren</button>
+  <button onclick="loginWithGoogle()">Mit Google anmelden</button>
+</div>
 
   <div id="quiz-container" style="display: none;">
     <div id="question-container">

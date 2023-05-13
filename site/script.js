@@ -23,17 +23,17 @@ var choiceElements = document.querySelectorAll("#choices button");
 var scoreElement = document.getElementById("score");
 var scoreboardElement = document.getElementById("scoreboard");
 
-// Benutzer anmelden
-function login() {
-  var email = emailInput.value;
-  var password = passwordInput.value;
+// Benutzer registrieren
+function register() {
+    var email = emailInput.value;
+    var password = passwordInput.value;
 
-  auth.signInWithEmailAndPassword(email, password)
+    auth.createUserWithEmailAndPassword(email, password)
     .then(function() {
-      showQuiz();
+        showQuiz();
     })
     .catch(function(error) {
-      errorMessage.textContent = error.message;
+        errorMessage.textContent = error.message;
     });
 }
 
@@ -49,6 +49,7 @@ function loginWithGoogle() {
         errorMessage.textContent = error.message;
     });
 }
+
 
 
 // Benutzer abmelden
