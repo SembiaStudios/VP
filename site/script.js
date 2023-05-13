@@ -128,13 +128,14 @@ function endQuiz() {
     scoreboardContainer.style.display = "block";
 
     // Punktzahl in der Datenbank speichern
-    db.collection("scores").add({
-        user: user.uid,
-        score: score
-    })
-    .then(function() {
-        showScoreboard();
-    })
+    db.collection("scores")
+.add({
+    user: user.uid,
+    score: score
+})
+.then(function() {
+    showScoreboard();
+})
 .catch(function(error) {
     console.log(error);
 });
@@ -144,12 +145,15 @@ function endQuiz() {
 function showScoreboard() {
     scoreboardElement.innerHTML = "";
 
-    db.collection("scores").orderBy("score", "desc").limit(10).get()
+    db.collection("scores")
+.orderBy("score", "desc")
+.limit(10)
+.get()
 .then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         var scoreData = doc.data();
         var li = document.createElement("li");
-        li.textContent = scoreData.score;
+        li.textContent = "Punktzahl: " + scoreData.score;
         scoreboardElement.appendChild(li);
     });
 })
