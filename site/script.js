@@ -50,27 +50,25 @@ function loginWithGoogle() {
     });
 }
 
-
-
 // Benutzer abmelden
 function logout() {
-  auth.signOut()
+    auth.signOut()
     .then(function() {
-      showLogin();
+        showLogin();
     })
     .catch(function(error) {
-      console.log(error);
+        console.log(error);
     });
 }
 
 // Quiz anzeigen
 function showQuiz() {
-  loginContainer.style.display = "none";
-  scoreboardContainer.style.display = "none";
-  quizContainer.style.display = "block";
-  scoreElement.textContent = "Punktzahl: 0";
+    loginContainer.style.display = "none";
+    scoreboardContainer.style.display = "none";
+    quizContainer.style.display = "block";
+    scoreElement.textContent = "Punktzahl: 0";
 
-  showQuestion();
+    showQuestion();
 }
 
 // Fragen und Antworten
@@ -88,89 +86,90 @@ var questions = [
     // Fügen Sie hier weitere Fragen hinzu
 ];
 
+var currentQuestionIndex = 0;
+var score = 0;
 
 // Frage anzeigen
 function showQuestion() {
-  var currentQuestion = questions[currentQuestionIndex];
+    var currentQuestion = questions[currentQuestionIndex];
 
-  questionElement.textContent = currentQuestion.question;
+    questionElement.textContent = currentQuestion.question;
 
-  for (var i = 0; i < choiceElements.length; i++) {
-    choiceElements[i].textContent = currentQuestion.choices[i];
-  }
+    for (var i = 0; i < choiceElements.length; i++) {
+        choiceElements[i].textContent = currentQuestion.choices[i];
+    }
 }
 
 // Antwort überprüfen
 function checkAnswer(choiceIndex) {
-  var currentQuestion = questions[currentQuestionIndex];
+    var currentQuestion = questions[currentQuestionIndex];
 
-  if (choiceIndex === currentQuestion.correctAnswer) {
-    score++;
-    alert("Richtig!");
-  } else {
-    alert("Falsch!");
-  }
+    if (choiceIndex === currentQuestion.correctAnswer) {
+        score++;
+        alert("Richtig!");
+    } else {
+        alert("Falsch!");
+    }
 
-  currentQuestionIndex++;
+    currentQuestionIndex++;
 
-  if (currentQuestionIndex < questions.length) {
-    showQuestion();
-  } else {
-    endQuiz();
-  }
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        endQuiz();
+    }
 }
 
 // Quiz beenden
 function endQuiz() {
-  var user = auth.currentUser;
+    var user = auth.currentUser;
 
-  quizContainer.style.display = "none";
-  scoreboardContainer.style.display = "block";
+    quizContainer.style.display = "none";
+    scoreboardContainer.style.display = "block";
 
-  // Punktzahl in der Datenbank speichern
-  db.collection("scores").add({
-    user: user.uid,
-    score: score
-  })
-    .then(function() {
-      showScoreboard();
+    // Punktzahl in der Datenbank speichern
+    db.collection("scores").add({
+        user: user.uid,
+        score: score
     })
-    .catch(function(error) {
-      console.log(error);
-    });
+    .then(function() {
+        showScoreboard();
+    })
+.catch(function(error) {
+    console.log(error);
+});
 }
 
 // Scoreboard anzeigen
 function showScoreboard() {
-  scoreboardElement.innerHTML = "";
+    scoreboardElement.innerHTML = "";
 
-  db.collection("scores").orderBy("score", "desc").limit(10).get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    db.collection("scores").orderBy("score", "desc").limit(10).get()
+.then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
         var scoreData = doc.data();
         var li = document.createElement("li");
         li.textContent = scoreData.score;
         scoreboardElement.appendChild(li);
-      });
-    })
-    .catch(function(error) {
-      console.log(error);
     });
+})
+.catch(function(error) {
+    console.log(error);
+});
 }
 
 // Benutzerstatus überprüfen
 auth.onAuthStateChanged(function(user) {
-  if (user) {
-    showQuiz();
-  } else {
-    showLogin();
-  }
+    if (user) {
+        showQuiz();
+    } else {
+        showLogin();
+    }
 });
 
 // Anmeldeformular anzeigen
 function showLogin() {
     loginContainer.style.display = "block";
-
     quizContainer.style.display = "none";
     scoreboardContainer.style.display = "none";
     emailInput.value = "";
