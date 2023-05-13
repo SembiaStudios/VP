@@ -1,39 +1,46 @@
-#login-container, #quiz-container, #scoreboard-container {
-  width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  text-align: center;
-}
-
-.error-message {
-  color: red;
-}
-
-#choices {
-  width: 500px;
-  margin: 10px auto;
+.container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
-button {
-  margin: 5px;
-  padding: 10px 20px;
+.container input {
+  margin-bottom: 10px;
+}
+
+.container input[type="text"],
+.container input[type="email"],
+.container input[type="password"] {
+  width: 300px;
+  padding: 10px;
   font-size: 16px;
 }
 
-#score {
-  text-align: center;
+.container button {
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
-#scoreboard {
-  text-align: left;
-  list-style: none;
-  padding-left: 0;
+.quiz-container {
+  display: none;
 }
 
-#scoreboard li {
-    margin-bottom: 5px;
+.scoreboard-container {
+  display: none;
+}
+
+.scoreboard {
+  list-style-type: none;
+  padding: 0;
+}
+
+.scoreboard li {
+  margin-bottom: 5px;
 }
