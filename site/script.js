@@ -27,8 +27,16 @@ var scoreboardElement = document.getElementById("scoreboard");
 function register() {
     var email = emailInput.value;
     var password = passwordInput.value;
+    var username = usernameInput.value; // Nehmen Sie den Benutzernamen aus dem entsprechenden Eingabefeld
 
     auth.createUserWithEmailAndPassword(email, password)
+    .then(function(userCredential) {
+        var user = userCredential.user;
+        // Setzen Sie den Benutzernamen im Firebase-Authentifizierungsobjekt
+        return user.updateProfile({
+            displayName: username
+        });
+    })
     .then(function() {
         showQuiz();
     })
@@ -43,12 +51,20 @@ function loginWithGoogle() {
 
     auth.signInWithPopup(provider)
     .then(function(result) {
+        var user = result.user;
+        // Setzen Sie den Benutzernamen im Firebase-Authentifizierungsobjekt
+        return user.updateProfile({
+            displayName: user.displayName // Verwenden Sie den Namen des Google-Benutzers
+        });
+    })
+    .then(function() {
         showQuiz();
     })
     .catch(function(error) {
         errorMessage.textContent = error.message;
     });
 }
+
 
 // Benutzer abmelden
 function logout() {
