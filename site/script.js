@@ -73,6 +73,22 @@ function showQuiz() {
   showQuestion();
 }
 
+// Fragen und Antworten
+var questions = [
+    {
+        question: "Was bedeutet 'Hallo' auf Englisch?",
+        choices: ["Hello", "Goodbye", "Thank you", "Yes"],
+        correctAnswer: 0
+    },
+    {
+        question: "Wie sagt man 'Danke' auf Spanisch?",
+        choices: ["Gracias", "Por favor", "Hola", "Adiós"],
+        correctAnswer: 0
+    },
+    // Fügen Sie hier weitere Fragen hinzu
+];
+
+
 // Frage anzeigen
 function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
