@@ -23,28 +23,6 @@ var choiceElements = document.querySelectorAll("#choices button");
 var scoreElement = document.getElementById("score");
 var scoreboardElement = document.getElementById("scoreboard");
 
-// Benutzer registrieren
-function register() {
-    var email = emailInput.value;
-    var password = passwordInput.value;
-    var username = usernameInput.value; // Nehmen Sie den Benutzernamen aus dem entsprechenden Eingabefeld
-
-    auth.createUserWithEmailAndPassword(email, password)
-    .then(function(userCredential) {
-        var user = userCredential.user;
-        // Setzen Sie den Benutzernamen im Firebase-Authentifizierungsobjekt
-        return user.updateProfile({
-            displayName: username
-        });
-    })
-    .then(function() {
-        showQuiz();
-    })
-    .catch(function(error) {
-        errorMessage.textContent = error.message;
-    });
-}
-
 // Google-Anmeldung
 function loginWithGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
