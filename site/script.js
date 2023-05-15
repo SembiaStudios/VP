@@ -68,14 +68,24 @@ function showQuiz() {
 // Fragen und Antworten
 var questions = [
     {
-        question: "Was bedeutet 'Hallo' auf Englisch?",
-        choices: ["Hello", "Goodbye", "Thank you", "Yes"],
+        question: "Was bedeutet 'Geschichtsbewusstsein' auf Englisch?",
+        choices: ["bear", "aid to decision making", "historical awareness", "historical thing"],
+        correctAnswer: 2
+    },
+    {
+        question: "What does 'call forward' mean in German?",
+        choices: ["wachrufen", "Entscheidungshilfe", "anrufen", "Nach vorne rufen"],
         correctAnswer: 0
     },
     {
-        question: "Wie sagt man 'Danke' auf Spanisch?",
-        choices: ["Gracias", "Por favor", "Hola", "Adiós"],
-        correctAnswer: 0
+        question: "What does 'insight (into)' mean in German?",
+        choices: ["kollektives Gedächtnis", "wachrufen", "ertragen", "Einsicht"],
+        correctAnswer: 3
+    },
+    {
+        question: "Was bedeutet 'Entscheidungsfreiheit' auf Englisch?",
+        choices: ["collective memory", "freedom of decision", "historical awareness", "aid to decision making"],
+        correctAnswer: 1
     },
     // Fügen Sie hier weitere Fragen hinzu
 ];
