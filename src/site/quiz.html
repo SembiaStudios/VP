@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> LanguageLab - Quiz </title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1> LanguageLab - Quiz </h1>
+
+<div id="login-container">
+  <h2>Anmelden</h2>
+  <div id="error-message"></div>
+  <button onclick="loginWithGoogle()">Mit Google anmelden</button>
+</div>
+
+  <div id="quiz-container" style="display: none;">
+    <div id="question-container">
+      <p id="question"></p>
+    </div>
+
+    <div id="choices">
+      <button onclick="checkAnswer(0)" id="choice0"></button>
+      <button onclick="checkAnswer(1)" id="choice1"></button>
+      <button onclick="checkAnswer(2)" id="choice2"></button>
+      <button onclick="checkAnswer(3)" id="choice3"></button>
+    </div>
+
+    <p id="score">Punktzahl: 0</p>
+
+    <button onclick="logout()">Abmelden</button>
+  </div>
+
+  <div id="scoreboard-container" style="display: none;">
+    <h2>Scoreboard</h2>
+    <ol id="scoreboard"></ol>
+    <button onclick="showQuiz()">Zurück zum Quiz</button>
+  </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.0/firebase-firestore.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
