@@ -12,4 +12,4 @@ You can access LanguageLab's web version at http://languagelab.ddns.net and http
 
 # Developers
 
-- Nathan
+- Nathan Anthony
