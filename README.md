@@ -8,3 +8,4 @@ or this Button :
 
 # Web
 
+You can access LanguageLab's web version at http://languagelab.ddns.net and https://sembiastudios.github.io/VP/.
